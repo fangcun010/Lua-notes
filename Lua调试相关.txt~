@@ -47,3 +47,38 @@ what参数
 和'f'一块使用的选项，它的表在函数后被压入栈中。
 
 这个函数在遇到错误时会返回0。(比如使用了不合法的what参数时)。
+
+source:创建函数的程序块名称。如果source以'@'开始，表示这个函数被定义在一个
+文件中，这个文件的文件名在'@'之后。
+如果source以'='开始，它的剩余内容由用户决定。
+如果一个函数被定义在一个字符串中，那么source就是这个字符串。
+short_src:一个可打印版本的source，通常被用在错误消息中。
+linedefined:函数定义开始的行号。
+lastlinedefined:函数定义结束的行号。
+what:它的值是"Lua"表示这个函数是一个Lua函数。
+	"c"表示这是一个C函数，"main"表示这是一个程序块的主要部分。
+currentline:给定函数正在运行的行。
+	如果没有可用的行信息，currentline的值被设置为-1。
+name:给定函数的名称。因为函数在Lua中是一等公民，它们并没有固定的标识符：
+
+namewhat:对name域进行解释。它的值可能是"global"，"local"，"method"，
+"field"，"upvalue"或""(空字符串)，这取决于被调用的函数是怎样的
+(Lua在没有可用的选项时使用空字符串。)
+istailcall:如果一个函数是尾调用，它的值为true。
+	在这种情况下函数的调用者并不在栈中。
+nups:函数的上值数量。
+nparams:函数的固定参数数量(C函数的这个值总是0)。
+isvararg:如果这个函数是一个变参函数，它的值为true(C函数的这个值总是true)。
+
+debug.upvaluejoin(f1,n1,f2,n2)
+
+使闭包f1的第n1个上值引用闭包f2的第n2个上值。
+
+lua_upvaluejoin
+
+void lua_upvaluejoin(Lua_State *L,int funcindex1,int n1,
+		intfuncindex2,int n2);
+
+使索引为funcindex1的闭包的第n1个上值引用索引为funcindex2的闭包的
+第n2个上值。
+

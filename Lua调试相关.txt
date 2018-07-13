@@ -69,3 +69,16 @@ istailcall:如果一个函数是尾调用，它的值为true。
 nups:函数的上值数量。
 nparams:函数的固定参数数量(C函数的这个值总是0)。
 isvararg:如果这个函数是一个变参函数，它的值为true(C函数的这个值总是true)。
+
+debug.upvaluejoin(f1,n1,f2,n2)
+
+使闭包f1的第n1个上值引用闭包f2的第n2个上值。
+
+lua_upvaluejoin
+
+void lua_upvaluejoin(Lua_State *L,int funcindex1,int n1,
+		intfuncindex2,int n2);
+
+使索引为funcindex1的闭包的第n1个上值引用索引为funcindex2的闭包的
+第n2个上值。
+
