@@ -82,3 +82,14 @@ void lua_upvaluejoin(Lua_State *L,int funcindex1,int n1,
 使索引为funcindex1的闭包的第n1个上值引用索引为funcindex2的闭包的
 第n2个上值。
 
+debug.getupvalue(f,up)
+
+这个函数返回函数f的索引为up的上值的标识符和值。
+如果给定索引的上值不存在，函数返回nil。
+
+debug.setupvalue(f,up)
+
+设置函数f索引为up的上值的值为value。
+如果给定索引的上值不存在，函数返回nil。否则，它返回上值的标识符。
+
+
